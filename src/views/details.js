@@ -16,7 +16,7 @@ const detailsTemplate = (isCreator, data, onDelete, bookTotalLikes, likeBook, us
 
             <!-- Bonus -->
             <!-- Like button ( Only for logged-in users, which is not creators of the current book ) -->
-            ${!isCreator && !userAlreadyLiked ? html`<a @click=${likeBook} class="button"
+            ${!isCreator && !userAlreadyLiked ? html`<a id="likeButton" @click=${likeBook} class="button"
                 href="javascript:void(0)">Like</a>` : ''}
 
             <!-- ( for Guests and Users )  -->
