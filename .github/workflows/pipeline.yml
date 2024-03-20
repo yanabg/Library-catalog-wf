@@ -33,3 +33,23 @@ jobs:
     - name: Execute Playwright tests
       run: npm run test-ui    
 
+  deploy-be:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: build_and_test
+    steps:
+        - name: Deploy to production
+          uses: johnbeynon/render-deploy-action@v0.0.8
+          with:
+              service-id: ${{ secrets.SERVICE_BE_ID }}
+              api-key: ${{ secrets.RENDER_TOKEN }}
+  deploy-fe:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: deploy-be
+    steps:
+        - name: Deploy to production
+          uses: johnbeynon/render-deploy-action@v0.0.8
+          with:
+              service-id: ${{ secrets.SERVICE_FE_ID }}
+              api-key: ${{ secrets.RENDER_TOKEN }}
