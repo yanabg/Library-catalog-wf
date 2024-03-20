@@ -46,7 +46,14 @@ test('Verify that the Login Button is visible', async ({ page }) => {
     //await page.fill('input[name="email"]', 'peter@abv.bg');
     //await page.fill('input[name="password"]', '123456');
     //await page.click('input[type="submit"]');
+   
+    // Wait for the "All Books" link to appear:
+    await page.waitForSelector('a[href="/catalog"]');
 
+    //check if All Books link is visible:
+    const allBooksLink = await page.$('a[href="/catalog"]');
+    const isAllBooksLinkVisible = await allBooksLink.isVisible();
+    expect(isAllBooksLinkVisible).toBe(true);
 
     //Using Dimo's code fromm Video using copy selector from the dev console F12:
     await page.goto(baseURL);
@@ -62,10 +69,7 @@ test('Verify that the Login Button is visible', async ({ page }) => {
     expect(isLogoutButtonVisible).toBe(true);
 
 
-    //check if All Books link is visible:
-    const allBooksLink = await page.$('a[href="/catalog"]');
-    const isAllBooksLinkVisible = await allBooksLink.isVisible();
-    expect(isAllBooksLinkVisible).toBe(true);
+
  });
 
  test('Verify "My Books" link is visible after user login', async ({ page}) => {
