@@ -21,9 +21,13 @@ jobs:
     - name: instal package.json dependencies
       run: npm install
     - name: Start backend
-      run: npm run start-be
+      run: npm run start-be &
+    - name: Sleep for 5 seconds
+      run: sleep 5
     - name: Start Frontend
-      run: npm run start-fe
+      run: npm run start-fe &
+    - name: Sleep for 5 seconds
+      run: sleep 5
     - name: Execute Playwright tests
       run: npm run test-ui    
 
