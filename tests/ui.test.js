@@ -1,5 +1,5 @@
 const {expect, test} = require('@playwright/test');
-const baseURL = "http://localhost:4000";
+const baseURL = "http://localhost:4001";
 const user = 'peter@abv.bg';
 const regularUser = 'john@abv.bg'
 const password = '123456';
@@ -42,7 +42,7 @@ test('Verify that the Login Button is visible', async ({ page }) => {
 //test.only to verify just this test:
  test('Verify "All Books" link is visible after user login', async ({ page}) => {
    //Using the code guidance from the exercise:
-    //await page.goto('http://localhost:4000/login');
+    //await page.goto('http://localhost:4001/login');
     //await page.fill('input[name="email"]', 'peter@abv.bg');
     //await page.fill('input[name="password"]', '123456');
     //await page.click('input[type="submit"]');
@@ -125,7 +125,7 @@ test('Verify that the Login Button is visible', async ({ page }) => {
     await page.fill('#password', password);
     await page.click('input[type="submit"]');
     await page.$('a[href="/catalog"]');
-    expect(page.url()).toBe('http://localhost:4000/catalog');
+    expect(page.url()).toBe('http://localhost:4001/catalog');
   });
 
   //Test2: Submit the Form with Empty Input Fields:
@@ -141,7 +141,7 @@ test('Login with empty input fields', async ({ page }) => {
         await dialog.accept();
     });
     await page.$('a[href="/catalog"]');
-    expect(page.url()).toBe('http://localhost:4000/login');
+    expect(page.url()).toBe('http://localhost:4001/login');
   });
 
   test('Submit the form with empty email input field', async ({ page }) => {
@@ -194,7 +194,7 @@ test('Login with empty input fields', async ({ page }) => {
     await page.fill('#password', password);
     await page.click('input[type="submit"]');
     await page.$('a[href="/catalog"]');
-    expect(page.url()).toBe('http://localhost:4000/register');
+    expect(page.url()).toBe('http://localhost:4001/register');
   });
   
   //Test2: Submit the Form with Empty Input Fields:
@@ -210,7 +210,7 @@ test('Register with empty input fields', async ({ page }) => {
         await dialog.accept();
     });
     await page.$('a[href="/catalog"]');
-    expect(page.url()).toBe('http://localhost:4000/register');
+    expect(page.url()).toBe('http://localhost:4001/register');
   });
 
   test('Submit register form with empty email input field', async ({ page }) => {
@@ -299,13 +299,13 @@ test('Register with empty input fields', async ({ page }) => {
 
 test('Add Book with correct data', async ({ page }) => {
     //go to the "Login" page and fill in the predefined email & password & click on the [Submit] button, as only logged-in users can add books
-    await page.goto('http://localhost:4000/login');
+    await page.goto('http://localhost:4001/login');
     await page.fill('#email', user);
     await page.fill('#password', password);
 
     await Promise.all([
         page.click('input[type="submit"]'),
-        page.waitForURL('http://localhost:4000/catalog')
+        page.waitForURL('http://localhost:4001/catalog')
 
     ]);
     
@@ -324,21 +324,21 @@ test('Add Book with correct data', async ({ page }) => {
     await page.click('#create-form input[type="submit"]');
 
     //verify that we're being redirected to the correct page:
-    await page.waitForURL('http://localhost:4000/catalog');
-    expect(page.url()).toBe('http://localhost:4000/catalog');
+    await page.waitForURL('http://localhost:4001/catalog');
+    expect(page.url()).toBe('http://localhost:4001/catalog');
 });
 
 
 //Submit the Form with Empty Title Field:
 test('Add Book with empty title field', async ({ page }) => {
     //step 1: go to the "Login", login & go to the "Add Book" page:
-    await page.goto('http://localhost:4000/login');
+    await page.goto('http://localhost:4001/login');
     await page.fill('#email', user);
     await page.fill('#password', password);
 
     await Promise.all([
         page.click('input[type="submit"]'),
-        page.waitForURL('http://localhost:4000/catalog')
+        page.waitForURL('http://localhost:4001/catalog')
     ]);  
     //go to the "Add Book" page via the navigation menu link:
     await page.click('a[href="/create"]');
@@ -356,19 +356,19 @@ test('Add Book with empty title field', async ({ page }) => {
     });
     //check if we're redirected to some other page or if we're navigated to the "Add Book" page:
     await page.$('a[href="/create"]');
-    expect(page.url()).toBe('http://localhost:4000/create');
+    expect(page.url()).toBe('http://localhost:4001/create');
 });
 
 //Submit the Form with Empty Description Field:
 test('Add Book with empty description field', async ({ page }) => {
     //step 1: go to the "Login", login & go to the "Add Book" page:
-    await page.goto('http://localhost:4000/login');
+    await page.goto('http://localhost:4001/login');
     await page.fill('#email', user);
     await page.fill('#password', password);
 
     await Promise.all([
         page.click('input[type="submit"]'),
-        page.waitForURL('http://localhost:4000/catalog')
+        page.waitForURL('http://localhost:4001/catalog')
     ]);  
     //go to the "Add Book" page via the navigation menu link:
     await page.click('a[href="/create"]');
@@ -387,20 +387,20 @@ test('Add Book with empty description field', async ({ page }) => {
     });
     //check if we're redirected to some other page or if we're navigated to the "Add Book" page:
     await page.$('a[href="/create"]');
-    expect(page.url()).toBe('http://localhost:4000/create');
+    expect(page.url()).toBe('http://localhost:4001/create');
 });
 
 
 //Submit the Form with Empty Image URL Field:
 test('Add Book with empty image URL field', async ({ page }) => {
     //step 1: go to the "Login", login & go to the "Add Book" page:
-    await page.goto('http://localhost:4000/login');
+    await page.goto('http://localhost:4001/login');
     await page.fill('#email', user);
     await page.fill('#password', password);
 
     await Promise.all([
         page.click('input[type="submit"]'),
-        page.waitForURL('http://localhost:4000/catalog')
+        page.waitForURL('http://localhost:4001/catalog')
     ]);  
     //go to the "Add Book" page via the navigation menu link:
     await page.click('a[href="/create"]');
@@ -419,17 +419,17 @@ test('Add Book with empty image URL field', async ({ page }) => {
     });
     //check if we're redirected to some other page or if we're navigated to the "Add Book" page:
     await page.$('a[href="/create"]');
-    expect(page.url()).toBe('http://localhost:4000/create');
+    expect(page.url()).toBe('http://localhost:4001/create');
 });
 
 test('Login and verify all books are displayed', async ({ page }) => {
-   await page.goto('http://localhost:4000/login');
+   await page.goto('http://localhost:4001/login');
    await page.fill('#email', user);
    await page.fill('#password', password);
 
    await Promise.all([
     page.click('input[type="submit"]'),
-    page.waitForURL('http://localhost:4000/catalog')
+    page.waitForURL('http://localhost:4001/catalog')
    ]);
    //to get the book list, we have to wait for it to load and get it via the CSS class that is assigned to it:
    await page.waitForSelector('.dashboard');
@@ -442,13 +442,13 @@ test('Login and verify all books are displayed', async ({ page }) => {
 
 
 test('Login and navigate to Details page', async ({ page }) => {
-    await page.goto('http://localhost:4000/login');
+    await page.goto('http://localhost:4001/login');
     await page.fill('#email', user);
     await page.fill('#password', password);
 
     await Promise.all([
         page.click('input[type="submit"]'),
-        page.waitForURL('http://localhost:4000/catalog')
+        page.waitForURL('http://localhost:4001/catalog')
     ]);
 
     await page.click('a[href="/catalog"]');
@@ -462,7 +462,7 @@ test('Login and navigate to Details page', async ({ page }) => {
 });
 
 test('Check if guest user sees Details page', async ({ page }) => {
-    await page.goto("http://localhost:4000/catalog");
+    await page.goto("http://localhost:4001/catalog");
     await page.click('a[href="/catalog"]');
     await page.waitForSelector('.otherBooks');
     await page.click('.otherBooks a.button');
@@ -476,7 +476,7 @@ test('Check if guest user sees Details page', async ({ page }) => {
 
 test('Verify That All Info Is Displayed Correctly', async ({ page }) => {
     // Navigate to the catalog page & wait for the book elements to load:
-    await page.goto('http://localhost:4000/catalog');
+    await page.goto('http://localhost:4001/catalog');
     //await page.click('a[href="/catalog"]');
     await page.waitForSelector('.otherBooks');
 
@@ -498,14 +498,14 @@ test('Verify That All Info Is Displayed Correctly', async ({ page }) => {
 
 test('Check if Verify Edit and Delete Buttons are visible for Creator', async ({ page }) => {
     //Navigate to the login page and login to All books: 
-    await page.goto('http://localhost:4000/login');
+    await page.goto('http://localhost:4001/login');
     await page.fill('#email', user);
     await page.fill('#password', password);
 
     //go to Details page:
     await Promise.all([
         page.click('input[type="submit"]'),
-        page.waitForURL('http://localhost:4000/catalog')
+        page.waitForURL('http://localhost:4001/catalog')
     ]);
     //go to Details page:
     await page.click('a[href="/catalog"]');
@@ -527,7 +527,7 @@ test('Check if Verify Edit and Delete Buttons are visible for Creator', async ({
 
 test('Check if Edit and Delete Buttons are not visible for Non-Creator', async ({ page}) => {
      //navigate to details page:   
-    await page.goto("http://localhost:4000/catalog");
+    await page.goto("http://localhost:4001/catalog");
     await page.click('a[href="/catalog"]');
     //wait for details page to load:
     await page.waitForSelector('.otherBooks');
@@ -554,12 +554,12 @@ test('Check if Edit and Delete Buttons are not visible for Non-Creator', async (
 
 test('Check if Like Button is not visible for Creator', async ({ page }) => {
     //Navigate to the login page and login to All books: 
-    await page.goto('http://localhost:4000/login');
+    await page.goto('http://localhost:4001/login');
     await page.fill('#email', user);
     await page.fill('#password', password);
     await Promise.all([
         page.click('input[type="submit"]'),
-        page.waitForURL('http://localhost:4000/catalog')
+        page.waitForURL('http://localhost:4001/catalog')
     ]);
     //go to Details page:
     await page.click('a[href="/catalog"]');
@@ -666,7 +666,7 @@ test('Verify "Logout" link is visible after user login', async ({ page}) => {
   });
  
 test('Verify That the "Logout" Button Redirects Correctly', async({page}) => {
-    await page.goto("http://localhost:4000/login");
+    await page.goto("http://localhost:4001/login");
 
     await page.fill('#email', user);
     await page.fill('#password', password);
@@ -681,5 +681,5 @@ test('Verify That the "Logout" Button Redirects Correctly', async({page}) => {
     await logoutLink.click();
 
     const redirectedURL = page.url();
-    expect(redirectedURL).toBe('http://localhost:4000/catalog');
+    expect(redirectedURL).toBe('http://localhost:4001/catalog');
 });
