@@ -65,6 +65,23 @@ test('Verify that the Login Button is visible', async ({ page }) => {
     expect(isAllBooksLinkVisible).toBe(true);
  });
 */
+
+test('Verify "All Books" link is visible after user login', async ({ page }) => {
+    await page.goto('http://localhost:4001/login');
+    console.log('Success navigate to loginpage');
+  
+    await page.fill('input[name="email"]', 'peter@abv.bg');
+    console.log('success filling in email');
+    await page.fill('input[name="password"]', '123456');
+    console.log('success filling in password');
+    await page.click('input[type="submit"]');
+  
+    const allBooksLink = await page.$('a[href="/catalog"]');
+    const isAllBooksLinkVisible = await allBooksLink.isVisible();
+  
+    expect(isAllBooksLinkVisible).toBe(true);
+  });
+  
  test('Verify "My Books" link is visible after user login', async ({ page}) => {
      //Using Dimo's code fromm Video using copy selector from the dev console F12:
      await page.goto(baseURL);
