@@ -1,6 +1,8 @@
 const {expect, test} = require('@playwright/test');
 const baseURL = "http://localhost:4001";
 const loginURL = "http://localhost:4001/login";
+const registerURL = "http://localhost:4001/register";
+const catalogURL = "http://localhost:4001/catalog";
 const user = 'peter@abv.bg';
 const regularUser = 'john@abv.bg'
 const password = '123456';
@@ -681,7 +683,7 @@ test('Verify "Logout" link is visible after user login', async ({ page}) => {
   });
  
 test('Verify That the "Logout" Button Redirects Correctly', async({page}) => {
-    await page.goto("http://localhost:4001/login");
+    await page.goto(loginURL);
 
     await page.fill('#email', user);
     await page.fill('#password', password);
@@ -697,5 +699,5 @@ test('Verify That the "Logout" Button Redirects Correctly', async({page}) => {
 
     const redirectedURL = page.url();
     console.log("Current URL:", redirectedURL);
-    expect(redirectedURL).toBe('http://localhost:4001/catalog');
+    expect(redirectedURL).toBe(catalogURL);
 });
