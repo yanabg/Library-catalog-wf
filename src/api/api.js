@@ -1,6 +1,11 @@
+//added to fix the login:
+import * as config from '../config.js';
+/* switch-off this code block - see first line afdter this comment:
 export const settings = {
     host: '',
 };
+*/
+export const settings = config.settings
 
 async function request(url, options) {
     try {
