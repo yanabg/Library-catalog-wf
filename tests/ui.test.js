@@ -1,5 +1,6 @@
 const {expect, test} = require('@playwright/test');
 const baseURL = "http://localhost:4001";
+const loginURL = "http://localhost:4001/login";
 const user = 'peter@abv.bg';
 const regularUser = 'john@abv.bg'
 const password = '123456';
@@ -67,7 +68,7 @@ test('Verify that the Login Button is visible', async ({ page }) => {
 */
 
 test('Verify "All Books" link is visible after user login', async ({ page }) => {
-    await page.goto('http://localhost:4001/login');
+    await page.goto(loginURL);
     console.log('Success navigate to loginpage');
   
     await page.fill('input[name="email"]', 'peter@abv.bg');
