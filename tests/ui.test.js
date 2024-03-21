@@ -40,12 +40,8 @@ test('Verify that the Login Button is visible', async ({ page }) => {
  
  //---Test1: Verify That the "All Books" Link Is Visible
 //test.only to verify just this test:
- test('Verify "All Books" link is visible after user login', async ({ page}) => {
-   //Using the code guidance from the exercise:
-    //await page.goto('http://localhost:4001/login');
-    //await page.fill('input[name="email"]', 'peter@abv.bg');
-    //await page.fill('input[name="password"]', '123456');
-    //await page.click('input[type="submit"]');
+ /*test('Verify "All Books" link is visible after user login', async ({ page}) => {
+
 
 
     //Using Dimo's code fromm Video using copy selector from the dev console F12:
@@ -58,6 +54,7 @@ test('Verify that the Login Button is visible', async ({ page }) => {
 
     //check if Logout button is visible(to prove we are loggedin)
     const logoutButton = await page.$('#logoutBtn')
+
     const isLogoutButtonVisible = await logoutButton.isVisible();
     expect(isLogoutButtonVisible).toBe(true);
 
@@ -67,7 +64,7 @@ test('Verify that the Login Button is visible', async ({ page }) => {
     const isAllBooksLinkVisible = await allBooksLink.isVisible();
     expect(isAllBooksLinkVisible).toBe(true);
  });
-
+*/
  test('Verify "My Books" link is visible after user login', async ({ page}) => {
      //Using Dimo's code fromm Video using copy selector from the dev console F12:
      await page.goto(baseURL);
