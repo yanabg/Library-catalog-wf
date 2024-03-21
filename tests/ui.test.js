@@ -696,5 +696,6 @@ test('Verify That the "Logout" Button Redirects Correctly', async({page}) => {
     await logoutLink.click();
 
     const redirectedURL = page.url();
+    console.log("Current URL:", redirectedURL);
     expect(redirectedURL).toBe('http://localhost:4001/catalog');
 });
