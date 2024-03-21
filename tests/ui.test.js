@@ -156,7 +156,7 @@ test('Login with empty input fields', async ({ page }) => {
         await dialog.accept();
     });
     await page.$('a[href="/catalog"]');
-    expect(page.url()).toBe('http://localhost:4001/login');
+    expect(page.url()).toBe(loginURL);
   });
 
   test('Submit the form with empty email input field', async ({ page }) => {
